@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const getDaysInMonth = monthMoment => {
     const monthCopy = monthMoment.clone();
     monthCopy.startOf('month');
@@ -12,11 +14,11 @@ export const getDaysInMonth = monthMoment => {
     return days;
 }
 
-export const segmentInWeeks = dayMoment => {
+export const segmentIntoWeeks = dayMoments => {
     let weeks = [];
     let currentWeek = [];
 
-    for(let day of dayMoment) {
+    for(let day of dayMoments) {
         currentWeek.push(day.clone());
 
         if (day.format('dddd') === 'Saturday') {
@@ -33,18 +35,20 @@ export const segmentInWeeks = dayMoment => {
 }
 
 const padWeekFront = (week, padWith = null) => {
-    return {...Array(7 - week.length).fill(padWith), ...week};
+    return [...Array(7 - week.length).fill(padWith), ...week];
 }
 
 const padWeekBack = (week, padWith = null) => {
-    return {...week, ...Array(7 - week.length).fill(padWith)};
+    return [...week, ...Array(7 - week.length).fill(padWith)];
 }
 
 const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-export const Calendar = ({ currentMonthMoment, onPrev, onNext}) => {
-   
-    const weeks = segmentInWeeks(getDaysInMonth(currentMonthMoment));
+export const Calendar = ({ month, year, onPrev, onNext}) => {
+    const currentMonthMoment = moment(`${month}${year}`, 'MMYYYY')
+
+
+    const weeks = segmentIntoWeeks(getDaysInMonth(currentMonthMoment));
 
     return (
         <>
@@ -60,7 +64,7 @@ export const Calendar = ({ currentMonthMoment, onPrev, onNext}) => {
                    {weeks.map((week, i) => {
                     const displayWeek = i === 0
                         ? padWeekFront(week)
-                        : i === weeks.length -1
+                        : i === weeks.length - 1
                             ? padWeekBack(week)
                             : week;
                     return (
@@ -74,7 +78,7 @@ export const Calendar = ({ currentMonthMoment, onPrev, onNext}) => {
                 </tbody>
             </table>
         </>
-    )
+    );
 }
 
 

@@ -17,7 +17,8 @@ export const CalendarController = () => {
     }
     return (
         <Calendar  
-            currentMonthMoment={currentMonthMoment} 
+            month={currentMonthMoment.format('MM')}
+            year={currentMonthMoment.format('YYYY')}
             onPrev={decrementMonth} 
             onNext={incrementMonth}/>
     );
