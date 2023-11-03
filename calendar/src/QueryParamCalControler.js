@@ -40,8 +40,13 @@ export const QueryParamCalControler = () => {
             const branchName = 'main'; 
     
             const response = await axios.get(
-                `https://api.github.com/repos/Adrijana1308/portfolio/commits?since=${fromDate}&until=${toDate}&sha=${branchName}`
-            );
+                `https://api.github.com/repos/Adrijana1308/portfolio/commits?since=${fromDate}&until=${toDate}&sha=${branchName}`,
+                    {
+                        headers: {
+                        Authorization: `token ${githubToken}`
+                        }
+                    }
+                );
     
             const commits = response.data;
             const commitsData = {};
