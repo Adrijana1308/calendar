@@ -1,0 +1,84 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 15%;
+    width: 90%;
+    margin: auto;
+}
+
+.header-buttons {
+    display: flex;
+}
+
+.header-buttons button {
+    background: #fff;
+    border: 1px solid #13a9a930;
+    border-radius: 10px;
+    display: flex;
+    align-items: center; 
+    padding: 5px; 
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.icon {
+    color: #009999;
+    background: #fff;
+}
+/* tablica */
+.calendar-table-wrap{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.calendar-table{
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+
+.calendar-row{
+    display: flex;
+    flex: 1;
+}
+
+.calendar-heading{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    background: #13a9a930;
+    color: #009999;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.calendar-heading-cell{
+    flex: 1;
+    text-align: center;
+    align-self: center;
+}
+
+.calendar-cell-wrap{
+    padding: 0;
+    flex: 1;
+}
+
+.calendar-cell{
+    border: 1px solid #eee;
+    position: relative;
+    height: 100%;
+    cursor: pointer;
+    text-align: right;
+}
+
+.calendar-cell:hover{
+    background: #eee;
+}

@@ -1,48 +1,8 @@
 import moment from 'moment';
-
-export const getDaysInMonth = monthMoment => {
-    const monthCopy = monthMoment.clone();
-    monthCopy.startOf('month');
-
-    let days = [];
-
-    while(monthCopy.month() === monthMoment.month()){
-        days.push(monthCopy.clone());
-        monthCopy.add(1, 'days');
-    }
-
-    return days;
-}
-
-export const segmentIntoWeeks = dayMoments => {
-    let weeks = [];
-    let currentWeek = [];
-
-    for(let day of dayMoments) {
-        currentWeek.push(day.clone());
-
-        if (day.format('dddd') === 'Saturday') {
-            weeks.push(currentWeek);
-            currentWeek = [];
-        }
-    }
-    
-    if (currentWeek.length > 0) {
-        weeks.push(currentWeek);
-    }
-
-    return weeks;
-}
-
-const padWeekFront = (week, padWith = null) => {
-    return [...Array(7 - week.length).fill(padWith), ...week];
-}
-
-const padWeekBack = (week, padWith = null) => {
-    return [...week, ...Array(7 - week.length).fill(padWith)];
-}
-
-const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+import { getDaysInMonth, segmentIntoWeeks, padWeekFront, padWeekBack, daysOfTheWeek } from './util'
+import './Calendar.css';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 export const Calendar = ({ month, year, onPrev, onNext}) => {
     const currentMonthMoment = moment(`${month}${year}`, 'MMYYYY')
@@ -52,37 +12,42 @@ export const Calendar = ({ month, year, onPrev, onNext}) => {
 
     return (
         <>
-            <h1>{currentMonthMoment.format('MMMM YYYY')}</h1>
-            <button onClick={onPrev}>Prev</button>
-            <button onClick={onNext}>Next</button>
-
-            <table>
-                <thead>
-                    <tr>{daysOfTheWeek.map(day => <th key={day}>{day}</th>)}</tr>
-                </thead>
-                <tbody>
-                   {weeks.map((week, i) => {
-                    const displayWeek = i === 0
-                        ? padWeekFront(week)
-                        : i === weeks.length - 1
-                            ? padWeekBack(week)
-                            : week;
-                    return (
-                        <tr key={i}>
-                            {displayWeek.map((dayMoment, j) => dayMoment
-                                ? <td key={dayMoment.format('D')}>{dayMoment.format('D')}</td>
-                                : <td key={`${i}${j}`}></td>)}
-                        </tr>
-                    );        
-                   })} 
-                </tbody>
-            </table>
+            <div className='calendar-table-wrap'>
+                <div className='header'>
+                    <h1>{currentMonthMoment.format('MMMM YYYY')}</h1>
+                    <div className='header-buttons'>
+                        <button onClick={onPrev}><NavigateBeforeIcon className='icon' /></button>
+                        <button onClick={onNext}><NavigateNextIcon className='icon' /></button>
+                    </div>
+                </div>
+                
+                <div className='calendar-table'>
+                    <div className='calendar-heading'>
+                        {daysOfTheWeek.map(day => <div className='calendar-heading-cell' key={day}>{day}</div>)}
+                    </div>
+                    
+                        {weeks.map((week, i) => {
+                            const displayWeek = i === 0
+                                ? padWeekFront(week)
+                                : i === weeks.length - 1
+                                    ? padWeekBack(week)
+                                    : week;
+                            return (
+                                <div className='calendar-row' key={i}>
+                                    {displayWeek.map((dayMoment, j) => (
+                                        <div className='calendar-cell-wrap'>
+                                            {dayMoment
+                                                ? <div className='calendar-cell' key={dayMoment.format('D')}>{dayMoment.format('D')}</div>
+                                                : <div className='calendar-cell' key={`${i}${j}`}></div>}
+                                        </div>
+                                    ))}
+                                </div>
+                            );        
+                        })} 
+                    
+                </div>
+            </div>
+            
         </>
     );
 }
-
-
-
-
-
-
