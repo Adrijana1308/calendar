@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+const githubToken = process.env.REACT_APP_GITHUB_TOKEN;
+.env
