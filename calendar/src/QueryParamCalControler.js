@@ -2,8 +2,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { Calendar } from './Calendar';
-import axios from 'axios';
-
 
 export const QueryParamCalControler = () => {
     const {search} = useLocation();
@@ -31,49 +29,13 @@ export const QueryParamCalControler = () => {
         setCurrentMonthMoment(newMonth);
     }
 
-    const [commitsByDate, setCommitsByDate] = useState({});
-    useEffect(() => {
-        async function fetchCommits() {
-          try {
-            const fromDate = currentMonthMoment.startOf('month').format();
-            const toDate = currentMonthMoment.endOf('month').format();
-            const branchName = 'main'; 
     
-            const response = await axios.get(
-                `https://api.github.com/repos/Adrijana1308/portfolio/commits?since=${fromDate}&until=${toDate}&sha=${branchName}`,
-                    {
-                        headers: {
-                        Authorization: `token ${githubToken}`
-                        }
-                    }
-                );
-    
-            const commits = response.data;
-            const commitsData = {};
-    
-            commits.forEach(commit => {
-              const date = commit.commit.committer.date.split('T')[0];
-              if (!commitsData[date]) {
-                commitsData[date] = [];
-              }
-              commitsData[date].push(commit);
-            });
-    
-            setCommitsByDate(commitsData);
-          } catch (error) {
-            console.error('Error fetching commits:', error);
-          }
-        }
-    
-        fetchCommits();
-      }, [currentMonthMoment]);
 
     return (
         <Calendar  
             month={currentMonthMoment.format('MM')}
             year={currentMonthMoment.format('YYYY')}
             onPrev={decrementMonth} 
-            onNext={incrementMonth}
-            commitsByDate={commitsByDate}/>
+            onNext={incrementMonth}/>
     );
 }

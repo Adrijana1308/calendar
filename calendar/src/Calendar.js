@@ -35,22 +35,11 @@ export const Calendar = ({ month, year, onPrev, onNext}) => {
                             return (
                                 <div className='calendar-row' key={i}>
                                     {displayWeek.map((dayMoment, j) => (
-                                        <div className='calendar-cell-wrap' key={`${i}-${j}`}>
-                                            {dayMoment ? (
-                                            <div className='calendar-cell' key={dayMoment.format('D')}>
-                                                <p>{dayMoment.format('D')}</p>
-                                                {commitsByDate[dayMoment.format('YYYY-MM-DD')] ? (
-                                                <ul>
-                                                    {commitsByDate[dayMoment.format('YYYY-MM-DD')].map(commit => (
-                                                    <li key={commit.sha}>{commit.commit.message}</li>
-                                                    ))}
-                                                </ul>
-                                                ) : null}
-                                            </div>
-                                            ) : (
-                                            <div className='calendar-cell' key={`${i}-${j}`}></div>
-                                            )}
-                                        </div> 
+                                        <div className='calendar-cell-wrap'>
+                                            {dayMoment
+                                                ? <div className='calendar-cell' key={dayMoment.format('D')}><p>{dayMoment.format('D')}</p></div>
+                                                : <div className='calendar-cell' key={`${i}${j}`}></div>}
+                                        </div>
                                     ))}
                                 </div>
                             );        
