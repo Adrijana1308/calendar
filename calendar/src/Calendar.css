@@ -76,9 +76,18 @@
     position: relative;
     height: 100%;
     cursor: pointer;
-    text-align: right;
+    text-align: center;
 }
 
 .calendar-cell:hover{
     background: #eee;
+}
+
+.calendar-cell p{
+    background-color: #eee;
+    width: 25px;
+    position: relative;
+    float: right;
+    border-radius: 50px;
+    margin-right: 5px;
 }

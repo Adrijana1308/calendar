@@ -37,7 +37,7 @@ export const Calendar = ({ month, year, onPrev, onNext}) => {
                                     {displayWeek.map((dayMoment, j) => (
                                         <div className='calendar-cell-wrap'>
                                             {dayMoment
-                                                ? <div className='calendar-cell' key={dayMoment.format('D')}>{dayMoment.format('D')}</div>
+                                                ? <div className='calendar-cell' key={dayMoment.format('D')}><p>{dayMoment.format('D')}</p></div>
                                                 : <div className='calendar-cell' key={`${i}${j}`}></div>}
                                         </div>
                                     ))}
