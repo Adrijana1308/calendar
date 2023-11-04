@@ -19,7 +19,7 @@ export const segmentIntoWeeks = dayMoments => {
     for(let day of dayMoments) {
         currentWeek.push(day.clone());
 
-        if (day.format('dddd') === 'Saturday') {
+        if (day.format('dddd') === 'Sunday') {
             weeks.push(currentWeek);
             currentWeek = [];
         }
