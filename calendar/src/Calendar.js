@@ -46,17 +46,20 @@ export const Calendar = ({ month, year, onPrev, onNext, commitData }) => {
         <div className='calendar-table'>
           {selectedDate && (
             <div className='expanded-commit-info'>
-              <div className='text'>
+                <div className='text'>
                 <h3>Commits on {selectedDate.format('MMMM D, YYYY')}:</h3>
                 <CloseIcon className='close' onClick={handleClose} />
-              </div>
-              <div className='expanded-commits'>
+                </div>
+                <div className='expanded-commits'>
                 {getCommitsOnDate(selectedDate).map((commit, index) => (
-                  <div key={index} className='expanded-commit'>
-                    <p>{commit.commit.message}</p>
-                  </div>
+                    <div key={index} className='expanded-commit'>
+                        <div className='commit'>
+                            <p>{commit.commit.message}</p>
+                            <p>{moment(commit.commit.author.date).format('HH:mm:ss')}</p>
+                        </div>
+                    </div>
                 ))}
-              </div>
+                </div>
             </div>
           )}
           <div className='calendar-heading'>
@@ -78,7 +81,7 @@ export const Calendar = ({ month, year, onPrev, onNext, commitData }) => {
                         {getCommitsOnDate(dayMoment).length > 0 && (
                           <div className='commit-info'>
                             <div className='commit-details'>
-                              <p>{getCommitsOnDate(dayMoment)[0].commit.message}+</p>
+                              <p>{getCommitsOnDate(dayMoment)[0].commit.message}</p>
                             </div>
                             {getCommitsOnDate(dayMoment).length > 1 ? (
                               <div className='more-commits'>{`+ ${getCommitsOnDate(dayMoment).length - 1}`}</div>

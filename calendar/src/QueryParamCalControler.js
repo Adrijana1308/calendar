@@ -9,7 +9,7 @@ export const QueryParamCalControler = () => {
 
   const fetchCommits = async (month, year) => {
     const owner = 'Adrijana1308';
-    const repo = 'portfolio';
+    const repo = 'calendar';
     const startOfMonth = moment(`${year}-${month}-01`).startOf('month').format('YYYY-MM-DDTHH:mm:ssZ');
     const endOfMonth = moment(`${year}-${month}-01`).endOf('month').format('YYYY-MM-DDTHH:mm:ssZ');
 
