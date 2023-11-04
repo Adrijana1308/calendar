@@ -80,7 +80,8 @@
 }
 
 .calendar-cell:hover{
-    background: #eee;
+    background: #13a9a930;
+    transition: all .3s ease;
 }
 
 .day-number{
@@ -93,18 +94,80 @@
 }
 
 .commit-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 25px;
     color: #009999;
+    font-weight: bolder;
+    height: 100%;
+    padding: 5px;
+}
+
+.commit-info:hover{
+    color: #fff;
+}
+
+.commit-details{
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 15px;
 }
 
 .more-commits{
     width: 30px;
     border-radius: 10px;
     padding: 5px; 
+    border: 1px solid #13a9a930;
+}
+
+.expanded-commit-info {
+    z-index: 999;
     background: #fff;
     border: 1px solid #13a9a930;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 auto;
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s;
+    justify-content: space-between;
+}
+
+.text {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+
+}
+
+.expanded-commits{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.expanded-commit {
+    margin: 5px;
+    padding: 0 5px;
+    border: 1px solid #13a9a930;
+    border-radius: 10px;
+    color: #009999;
+
+}
+
+.expanded-commit:hover{
+    color: #fff;
+    background: #13a9a930;
+    transition: all .3s ease;
+}
+
+.close{
+    margin-left: auto;
+    cursor: pointer;
 }
