@@ -61,7 +61,7 @@ export const QueryParamCalControler = () => {
           }
         });
     }
-  }, [month, year]);
+  }, [fetchCommits]);
 
   const today = moment();
   const [currentMonthMoment, setCurrentMonthMoment] = useState(
