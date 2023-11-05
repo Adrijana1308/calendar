@@ -112,12 +112,16 @@
     margin-top: 15px;
 }
 
-.more-commits{
-    width: 30px;
+.more-commits {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     border-radius: 10px;
-    padding: 5px; 
+    padding: 5px;
+    margin: 5px;
     border: 1px solid #13a9a930;
 }
+
 
 .expanded-commit-info {
     z-index: 999;
@@ -126,8 +130,8 @@
     border-radius: 10px;
     padding: 10px;
     margin: 0 auto;
-    width: 40%;
-    height: auto;
+    width: 50%;
+    height: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -137,6 +141,7 @@
     align-items: center;
     transition: all 0.5s;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .text {
@@ -152,15 +157,15 @@
 .expanded-commits{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 80%;
 }
 
 .expanded-commit {
-    margin: 5px;
     padding: 0 5px;
-    border: 1px solid #13a9a930;
-    border-radius: 10px;
+    border-top: 1px solid #13a9a930;
     color: #009999;
-    margin-top: 5px;
 }
 
 .expanded-commit:hover{
@@ -179,4 +184,13 @@
 .close{
     margin-left: auto;
     cursor: pointer;
+}
+
+.expanded-commits::-webkit-scrollbar {
+    background: #13a9a930;
+    ;
+}
+  
+.expanded-commits::-webkit-scrollbar-thumb {
+    background: #009999;
 }
