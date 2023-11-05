@@ -130,6 +130,7 @@
     margin: 0 auto;
     width: 50%;
     height: auto;
+    max-height: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -181,4 +182,12 @@
 .close{
     margin-left: auto;
     cursor: pointer;
+}
+
+.expanded-commits::-webkit-scrollbar-thumb {
+    background: #009999;
+}
+  
+.expanded-commits::-webkit-scrollbar {
+    background: #13a9a930;
 }
